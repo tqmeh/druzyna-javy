@@ -62,7 +62,7 @@ public class Rejestruj extends JFrame {
         bWyjdz=new JButton("Wyjdź");//przycisk wyjdz
         bWyjdz.setBounds(200,150,100,20);
         add(bWyjdz);
-        bWyjdz.addActionListener(e -> dispose());
+        bWyjdz.addActionListener(e -> dispose());//actionlistener
 
 
     }
