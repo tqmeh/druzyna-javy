@@ -38,6 +38,7 @@ JButton bZaloguj,bRejestruj;
        bZaloguj.addActionListener(e ->{
            Glowna glowna=new Glowna();
            glowna.setVisible(true);
+           dispose();
        });
 
         bRejestruj=new JButton("Rejestruj");// przycisk do nowej rejestracji uzytkownika

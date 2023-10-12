@@ -3,5 +3,6 @@ public class Main {
     {
         Logowanie logowanie=new Logowanie();
         logowanie.setVisible(true);
+        logowanie.setResizable(false);
     }
 }
