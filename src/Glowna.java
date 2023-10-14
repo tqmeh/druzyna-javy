@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 public class Glowna extends JFrame {
+
     JPanel panel1,panel2;
     JButton bNowy;
     public Glowna()
@@ -14,7 +16,7 @@ public class Glowna extends JFrame {
         panel1=new JPanel();
         panel2=new JPanel();
 
-        bNowy=new JButton("Nowy");
+        bNowy=new JButton(Main.resourceBundle.getString("nowy")+":");
         bNowy.setPreferredSize(new Dimension(100,20));
         panel1.add(bNowy);
         bNowy.addActionListener(e ->{

@@ -4,7 +4,7 @@ import java.awt.*;
 public class Dodawanie_Zlecenia extends JFrame {
     JPanel panel1, panel2, panel3, panel4;
     JLabel lZleceniodawca, lUrzadzenie, lModel, lNumerSeryjny, lDataPrzyjecia, lOpisUsterki,lWady,lUwagiSerwisanta;
-    JButton bWyjscie, bZapisz,bCzysc;
+    JButton bWyjscie, bZapisz;
     JTextArea aOpisUsterki,aWady,aUwagiSerwisanta;
     JTabbedPane zakladka1;
     JTextField tZleceniodawca,tUrzadzenia,tModel,tNumerSeryjny;
@@ -16,7 +16,6 @@ public class Dodawanie_Zlecenia extends JFrame {
         setSize(400, 400);
         setLayout(new BorderLayout());
         setExtendedState(MAXIMIZED_BOTH);
-
         panel1 = stworzPanel1();
         panel2 = stworzPanel2();
         panel3 = stworzPanel3();
@@ -27,7 +26,6 @@ public class Dodawanie_Zlecenia extends JFrame {
         zakladka1.addTab("Widoczne wady urzadzenia", null, panel4);
 
         add(zakladka1, BorderLayout.CENTER);
-
     }
 
     private JPanel stworzPanel1() {
@@ -36,65 +34,17 @@ public class Dodawanie_Zlecenia extends JFrame {
         panel.setPreferredSize(new Dimension(100, 100));
         add(panel, BorderLayout.WEST);
 
-
-
-
-        bZapisz=new JButton();
-        bCzysc=new JButton();
-        bWyjscie=new JButton();
-
-        StworzPrzycisk(bZapisz,"Zapisz",100,20,panel);
+        bZapisz = new JButton("Zapisz");
+        bZapisz.setPreferredSize(new Dimension(100, 20));
+        panel.add(bZapisz);
         bZapisz.addActionListener(e -> {
-            String zleceniodawca=tZleceniodawca.getText().trim();
-            String urzadzenie=tUrzadzenia.getText().trim();
-            String model=tModel.getText().trim();
-            String numer=tNumerSeryjny.getText().trim();
-            String usterka=aOpisUsterki.getText().trim();
-
-           if(zleceniodawca.isEmpty())
-            {
-                WyswietlKomunikatoBledzie("Nie wpisales zleceniodawcy");
-            }
-           else if(urzadzenie.isEmpty())
-            {
-                WyswietlKomunikatoBledzie("Nie wybrales urzadzenia");
-            }
-           else if(model.isEmpty())
-            {
-                WyswietlKomunikatoBledzie("Nie wpisales modelu urzadzenia");
-            }
-            else if(numer.isEmpty())
-            {
-                WyswietlKomunikatoBledzie("Nie wpisales numeru serujnego urzadzenia");
-            }
-            else if(usterka.isEmpty())
-            {
-                WyswietlKomunikatoBledzie("Nie opisales ustarki urzadzenia");
-            }
-            if(!zleceniodawca.isEmpty()&&!urzadzenie.isEmpty()&&!model.isEmpty()&&!numer.isEmpty()&&!usterka.isEmpty())
-            {
-                System.out.println("Wszystko wpisales ");
-                dispose();
-            }
+            System.out.println("wychodze z dodawania");
+            dispose();
         });
 
-        StworzPrzycisk(bCzysc,"Czyść",100,20,panel);
-        bCzysc.addActionListener(e ->{
-        tZleceniodawca.setText(" ");
-        tUrzadzenia.setText(" ");
-        tModel.setText(" ");
-        tNumerSeryjny.setText(" ");
-        aOpisUsterki.setText(" ");
-        aWady.setText(" ");
-        aUwagiSerwisanta.setText(" ");
-
-        });
-        StworzPrzycisk(bWyjscie,"Wyjdz",100,20,panel);
-
-
-
-
-
+        bWyjscie = new JButton("Wyjdź");
+        bWyjscie.setPreferredSize(new Dimension(100, 20));
+        panel.add(bWyjscie);
 
         return panel;
     }
@@ -113,37 +63,14 @@ public class Dodawanie_Zlecenia extends JFrame {
         panel.setBackground(Color.ORANGE);
         panel.setLayout(null);
 
-        lZleceniodawca=new JLabel();
-        lUrzadzenie=new JLabel();
-        lModel=new JLabel();
-        lNumerSeryjny=new JLabel();
-        lDataPrzyjecia=new JLabel();
-        lOpisUsterki=new JLabel();
+        lZleceniodawca = new JLabel("Zleceniodawca");
+        lZleceniodawca.setBounds(50, 50, 100, 20);
+        lZleceniodawca.setForeground(Color.WHITE);
+        panel.add(lZleceniodawca);
+
         tZleceniodawca=new JTextField();
-        tUrzadzenia=new JTextField();
-        tModel=new JTextField();
-        tNumerSeryjny=new JTextField();
-
-        WysweitlNapis(lZleceniodawca,"Zleceniodawca",50,50,100,20,panel);
-        WysweitlNapis(lUrzadzenie,"Urzadzenie",50,80,100,20,panel);
-        WysweitlNapis(lModel,"Model",50,110,100,20,panel);
-        WysweitlNapis(lNumerSeryjny,"Numer Seryjny",50,140,100,20,panel);
-        WysweitlNapis(lDataPrzyjecia,"Data przyjęcia",50,170,100,20,panel);
-        WysweitlNapis(lOpisUsterki,"Opis usterki",50,250,100,20,panel);
-
-        WpiszTekst(tZleceniodawca,150,50,150,20,panel);
-        WpiszTekst(tUrzadzenia,150,80,150,20,panel);
-        WpiszTekst(tModel,150,110,150,20,panel);
-        WpiszTekst(tNumerSeryjny,150,140,150,20,panel);
-
-        aOpisUsterki=new JTextArea();
-        aOpisUsterki.setWrapStyleWord(true);
-        aOpisUsterki.setLineWrap(true);
-        aOpisUsterki.setCaretPosition(0);
-
-        scroll=new JScrollPane(aOpisUsterki);
-        scroll.setBounds(50,270,400,200);
-        panel.add(scroll);
+        tZleceniodawca.setBounds(150,50,150,20);
+        panel.add(tZleceniodawca);
 
         bDodajZleceniodawce=new JButton();// przycisk dodaj zleceniodawce
         bDodajZleceniodawce.setBounds(310,50,20,20);
@@ -153,6 +80,52 @@ public class Dodawanie_Zlecenia extends JFrame {
         });
         panel.add(bDodajZleceniodawce);
 
+        lUrzadzenie = new JLabel("Urządzenie");
+        lUrzadzenie.setBounds(50, 80, 100, 20);
+        lUrzadzenie.setForeground(Color.WHITE);
+        panel.add(lUrzadzenie);
+
+        tUrzadzenia=new JTextField();
+        tUrzadzenia.setBounds(150,80,150,20);
+        panel.add(tUrzadzenia);
+
+        lModel = new JLabel("Model");
+        lModel.setBounds(50, 110, 100, 20);
+        lModel.setForeground(Color.WHITE);
+        panel.add(lModel);
+
+        tModel=new JTextField();
+        tModel.setBounds(150,110,150,20);
+        panel.add(tModel);
+
+
+        lNumerSeryjny = new JLabel("Numer Seryjny");
+        lNumerSeryjny.setBounds(50, 140, 100, 20);
+        lNumerSeryjny.setForeground(Color.WHITE);
+        panel.add(lNumerSeryjny);
+
+        tNumerSeryjny=new JTextField();
+        tNumerSeryjny.setBounds(150,140,150,20);
+        panel.add(tNumerSeryjny);
+
+        lDataPrzyjecia = new JLabel("Data Przyjecia");
+        lDataPrzyjecia.setBounds(50, 170, 100, 20);
+        lDataPrzyjecia.setForeground(Color.WHITE);
+        panel.add(lDataPrzyjecia);
+
+        lOpisUsterki = new JLabel("Opis Usterki");
+        lOpisUsterki.setBounds(50, 250, 100, 20);
+        lOpisUsterki.setForeground(Color.WHITE);
+        panel.add(lOpisUsterki);
+
+        aOpisUsterki=new JTextArea();
+        aOpisUsterki.setWrapStyleWord(true);
+        aOpisUsterki.setLineWrap(true);
+        aOpisUsterki.setCaretPosition(0);
+
+        scroll=new JScrollPane(aOpisUsterki);
+        scroll.setBounds(50,270,400,200);
+        panel.add(scroll);
 
 
 
@@ -194,34 +167,5 @@ public class Dodawanie_Zlecenia extends JFrame {
         return panel;
     }
 
-public void WysweitlNapis(JLabel label,String napis,int a,int b,int c,int d,JPanel panel)
-{
-    label.setText(napis);
-    label.setBounds(a,b,c,d);
-    label.setForeground(Color.WHITE);
-    panel.add(label);
-
-}
-public void WpiszTekst(JTextField text,int a,int b, int c, int d,JPanel panel)
-{
-    text.setBounds(a,b,c,d);
-    panel.add(text);
-}
-
-public void StworzPrzycisk(JButton button,String nazwa,int a,int b,JPanel panel)
-{
-    button.setPreferredSize(new Dimension(a,b));
-    button.setText(nazwa);
-    panel.add(button);
-}
-public  void WyswietlKomunikatoBledzie(String Blad)
-{
-    JOptionPane.showMessageDialog(
-            null,
-            Blad,
-            "Błąd",
-            JOptionPane.ERROR_MESSAGE
-    );
-}
 
 }
